@@ -8,14 +8,36 @@ public class Conta {
 
     private String dono;
     private Integer numero;
+    private String cpf;
     private Double saldo;
     private Double limite;
+
+    public Conta(String dono, int numero, String cpf, Double limite, Double saldo) {
+        this.dono = dono;
+        this.numero = numero;
+        this.cpf = cpf;
+        this.saldo = saldo;
+        this.limite = limite;
+    }
 
     public Conta(String dono, int numero, Double limite, Double saldo) {
         this.dono = dono;
         this.numero = numero;
         this.saldo = saldo;
         this.limite = limite;
+    }
+
+    public Conta(String dono, String cpf, Double limite, Double saldo) {
+        this.dono = dono;
+        this.cpf = cpf;
+        this.saldo = saldo;
+        this.limite = limite;
+    }
+
+    public Conta(String dono, String cpf, Double saldo) {
+        this.dono = dono;
+        this.cpf = cpf;
+        this.saldo = saldo;
     }
 
     public boolean sacar(Double valor) {
@@ -52,6 +74,10 @@ public class Conta {
     public Integer getNumero() {
         return numero;
     }
+
+    public String getCpf() { return cpf; }
+
+    public void setCpf(String cpf) { this.cpf = cpf; }
 
     public void setNumero(Integer numero) {
         this.numero = numero;
