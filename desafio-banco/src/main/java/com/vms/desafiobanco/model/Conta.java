@@ -40,6 +40,12 @@ public class Conta {
         this.saldo = saldo;
     }
 
+    public Conta(int numero, Double saldo, Double limite) {
+        this.numero = numero;
+        this.saldo = saldo;
+        this.limite = limite;
+    }
+
     public boolean sacar(Double valor) {
         if (saldo <= valor) {
             // Não pode sacar
@@ -51,16 +57,21 @@ public class Conta {
         }
     }
 
-    public boolean depositar(Double quantidade) {
-
+    public boolean verificarDeposito(Double quantidade){
         if (limite <= quantidade + saldo) {
             // Não pode depositar
             return false;
         } else {
             // Pode depositar
-            saldo += quantidade;
             return true;
         }
+    }
+
+    public boolean depositar(Double quantidade) {
+        if (verificarDeposito(quantidade)){
+            saldo += quantidade;
+        }
+        return false;
     }
 
     public String getDono() {

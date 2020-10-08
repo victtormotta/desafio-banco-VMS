@@ -1,5 +1,5 @@
 # language: pt
-
+@CriarContaTeste
 Funcionalidade: Criar nova conta no banco
 
   Cenário: 01 - Criação de conta com balanço menor que o limite
