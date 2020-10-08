@@ -23,7 +23,7 @@ public class DepositoContaPassos {
     private Double depositoSolicitado;
 
     @Dado("^que existam as seguintes contas$")
-    public void queExistamAsSeguintesContas(List<Map<String, String>> contas) throws Throwable{
+    public void queExistamAsSeguintesContas(List<Map<String, String>> contas) throws Throwable {
         for (Map<String, String> dataRow : contas) {
             Integer numeroConta = Integer.valueOf(dataRow.get("Numero Conta"));
             Double saldo = Double.valueOf(dataRow.get("Saldo"));
@@ -44,8 +44,8 @@ public class DepositoContaPassos {
         }
     }
 
-    @Entao("^deverá ser apresentada a seguinte mensagem  \"([^\"]*)\"$")
-    public void deveráSerApresentadaASeguinteMensagem(String mensagem) throws Throwable {
+    @Entao("^deverá ser mostrada a seguinte mensagem \"([^\"]*)\"$")
+    public void deveráSerMostradaASeguinteMensagem(String mensagem) throws Throwable {
         Assertions.assertFalse(isDepositoValido, mensagem);
     }
 

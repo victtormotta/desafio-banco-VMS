@@ -46,14 +46,22 @@ public class Conta {
         this.limite = limite;
     }
 
-    public boolean sacar(Double valor) {
+    public boolean verificarSaque(Double valor) {
         if (saldo <= valor) {
             // Não pode sacar
             return false;
         } else {
             // Pode sacar
+            return true;
+        }
+    }
+
+    public boolean sacar(Double valor) {
+        if (verificarSaque(valor)) {
             saldo = saldo - valor;
             return true;
+        } else {
+            return false;
         }
     }
 
@@ -70,8 +78,10 @@ public class Conta {
     public boolean depositar(Double quantidade) {
         if (verificarDeposito(quantidade)){
             saldo += quantidade;
+            return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     public String getDono() {
