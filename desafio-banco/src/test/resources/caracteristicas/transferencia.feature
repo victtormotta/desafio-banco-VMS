@@ -20,13 +20,13 @@ Funcionalidade: Transferência de valores entre contas
       | Conta do Solicitante | Valor | Conta do Beneficiário |
       | 654321               | 701.0 | 123456                |
     Quando for executada a operação de transferência
-    Então deverá ser apresentada a seguinte mensagem "Saldo insuficiente para a operação."
+    Então deverá ser apresentada a mensagem "Saldo insuficiente para a operação."
 
   Cenário: 03 - Transferência com sucesso
     Dado que seja solicitada um transferência com as seguintes informações
       | Conta do Solicitante | Valor | Conta do Beneficiário |
       | 123456               | 500.0 | 654321                |
     Quando for executada a operação de transferência
-    Então deverá ser apresentada a seguinte mensagem "Transferência realizada com sucesso!"
-    E o saldo da conta "123456" deverá ser de "500.0"
-    E o saldo da conta "654321" deverá ser de "1200.0"
+    Então deverá ser apresentada a mensagem "Transferência realizada com sucesso!"
+    E o saldo da conta "123456" deve ser de "500.0"
+    E o saldo da conta "654321" deve ser de "1200.0"

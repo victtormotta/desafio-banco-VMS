@@ -5,6 +5,7 @@ import com.vms.desafiobanco.model.Transferencia;
 import cucumber.api.PendingException;
 import cucumber.api.java.Before;
 import cucumber.api.java.pt.Dado;
+import cucumber.api.java.pt.E;
 import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
 import org.junit.jupiter.api.Assertions;
@@ -64,6 +65,11 @@ public class TransferenciaBancoPassos {
     @Então("^deverá ser apresentada a mensagem \"([^\"]*)\"$")
     public void deveráSerApresentadaAMensagem(String message) throws Throwable {
         Assertions.assertTrue(isTransferenciaValida, message);
+    }
+
+    @E("^o saldo da conta \"([^\"]*)\" deve ser de \"([^\"]*)\"$")
+    public void oSaldoDaContaDeveSerDe(String numero, String saldoFinal) throws Throwable {
+        System.out.println("E o saldo da conta " + numero + " deverá ser de " + saldoFinal);
     }
 
     private Conta retornarContaPorNumero(Integer numeroConta, List<Conta> listaContas) throws Throwable {
