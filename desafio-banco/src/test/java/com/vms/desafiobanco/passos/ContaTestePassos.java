@@ -14,7 +14,7 @@ public class ContaTestePassos {
     @Dado("^a conta criada para o dono \"(.*?)\" de numero (\\d+) com o limite (\\d+) e saldo (\\d+)$")
     public void aContaCriadaParaODonoDeNumeroNumeroComOLimiteLimiteESaldoSaldo(String dono, int numero, Double limite, Double saldo) throws Throwable {
         // Definição de conta
-        conta = new Conta(dono, numero, limite, saldo);
+//        conta = new Conta(dono, numero, limite, saldo);
     }
 
     @Quando("^o dono realiza o deposito no valor de (\\d+) na conta$")

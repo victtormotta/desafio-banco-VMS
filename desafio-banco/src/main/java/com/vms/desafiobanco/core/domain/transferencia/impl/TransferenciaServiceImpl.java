@@ -13,6 +13,6 @@ public class TransferenciaServiceImpl implements TransferenciaService {
 
     @Override
     public Transferencia salvar(Transferencia trans) {
-        return null;
+        return trans;
     }
 }

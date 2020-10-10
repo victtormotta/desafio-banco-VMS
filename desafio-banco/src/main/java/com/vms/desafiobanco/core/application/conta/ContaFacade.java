@@ -13,7 +13,7 @@ public interface ContaFacade {
 
     ResponseEntity<?> salvar(@RequestBody Conta conta);
 
-    ResponseEntity<?> depositar(@PathVariable double quantidade, @PathVariable Long id);
+    ResponseEntity<?> depositar(@RequestBody Conta conta);
 
-    ResponseEntity<?> sacar(@PathVariable double quantidade, @PathVariable Long id);
+    ResponseEntity<?> sacar(@RequestBody Conta conta);
 }

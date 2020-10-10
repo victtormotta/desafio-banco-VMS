@@ -1,5 +1,8 @@
 package com.vms.desafiobanco.passos;
 
+import com.vms.desafiobanco.core.application.conta.impl.ContaFacadeImpl;
+import com.vms.desafiobanco.core.application.transferencia.TransferenciaFacade;
+import com.vms.desafiobanco.core.application.transferencia.impl.TransferenciaFacadeImpl;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.pt.Dado;
@@ -17,8 +20,11 @@ import java.util.Map;
  */
 public class TransferenciaBancoPassos extends DadosPassos {
 
+    private TransferenciaFacade transferenciaFacade;
+
     @Before
     public void criarMockTransferenciaBancoPassos(){
+        transferenciaFacade = new TransferenciaFacadeImpl();
         setLimiteInicial(500.00);
 //        setTransferenciaValida(true);
     }
@@ -36,10 +42,12 @@ public class TransferenciaBancoPassos extends DadosPassos {
     @Quando("^for executada a operação de transferência$")
     public void forExecutadaAOperaçãoDeTransferência() throws Throwable {
         validarTransferencia();
+        setResponse(transferenciaFacade.transferir(getTransferenciaSolicitada()));
     }
 
     @Então("^deverá ser apresentada a mensagem \"([^\"]*)\"$")
     public void deveráSerApresentadaAMensagem(String message) throws Throwable {
+        System.out.println(getResponse().toString());
         Assertions.assertTrue(isTransferenciaValida(), message);
     }
 
@@ -54,5 +62,6 @@ public class TransferenciaBancoPassos extends DadosPassos {
         setTransferenciaValida(null);
         setLimiteInicial(null);
         setListaContasTeste(null);
+        setResponse(null);
     }
 }

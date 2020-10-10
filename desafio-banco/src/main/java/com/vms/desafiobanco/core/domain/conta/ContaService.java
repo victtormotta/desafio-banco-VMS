@@ -9,10 +9,9 @@ import com.vms.desafiobanco.model.Conta;
 
 public interface ContaService {
 
-    public Conta criar(Conta conta);
+    Conta criar(Conta conta);
 
-    public Boolean depositar(double quantidade, Long id);
+    boolean sacar(Conta conta);
 
-    public Boolean sacar(double quantidade, Long id);
-
+    boolean depositar(Conta conta);
 }

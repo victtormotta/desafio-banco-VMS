@@ -1,7 +1,7 @@
 package com.vms.desafiobanco.passos;
 
-import com.vms.desafiobanco.model.Conta;
-import cucumber.api.PendingException;
+import com.vms.desafiobanco.core.application.conta.ContaFacade;
+import com.vms.desafiobanco.core.application.conta.impl.ContaFacadeImpl;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.pt.Dado;
@@ -19,8 +19,11 @@ import java.util.Map;
  */
 public class DepositoContaPassos extends DadosPassos {
 
+    private ContaFacade contaFacade;
+
     @Before
     public void criarMockDepositoContaPassos(){
+        contaFacade = new ContaFacadeImpl();
         setLimiteInicial(500.00);
         setDepositoValido(true);
     }
@@ -32,19 +35,23 @@ public class DepositoContaPassos extends DadosPassos {
 
     @E("^que seja solicitado um depósito de \"([^\"]*)\"$")
     public void queSejaSolicitadoUmDepósitoDe(String deposito) throws Throwable {
-        setDepositoSolicitado(Double.valueOf(deposito));
+        getConta().setDeposito(Double.valueOf(deposito));
         validarDeposito();
     }
 
     @Quando("^for executada a operação de depósito$")
     public void forExecutadaAOperaçãoDeDepósito() throws Throwable {
         if(isDepositoValido()){
-            getConta().depositar(getDepositoSolicitado());
-        }
+//            getConta().depositar(getDepositoSolicitado());
+            setResponse(contaFacade.depositar(getConta()));
+        } /*else {
+            setResponse(contaFacade.depositar(getDepositoSolicitado(), getConta()));
+        }*/
     }
 
     @Entao("^deverá ser mostrada a seguinte mensagem \"([^\"]*)\"$")
     public void deveráSerMostradaASeguinteMensagem(String mensagem) throws Throwable {
+        System.out.println(getResponse().toString());
         Assertions.assertFalse(isDepositoValido(), mensagem);
     }
 
@@ -55,8 +62,8 @@ public class DepositoContaPassos extends DadosPassos {
 
     @After
     public void limparMockDepositoContaPassos(){
-        setDepositoSolicitado(null);
         setLimiteInicial(null);
         setDepositoValido(null);
+        setResponse(null);
     }
 }

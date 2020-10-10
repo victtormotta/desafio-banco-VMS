@@ -1,7 +1,8 @@
 package com.vms.desafiobanco.passos;
 
+import com.vms.desafiobanco.core.application.conta.ContaFacade;
+import com.vms.desafiobanco.core.application.conta.impl.ContaFacadeImpl;
 import com.vms.desafiobanco.model.Conta;
-import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.pt.Dado;
@@ -19,8 +20,11 @@ import java.util.Map;
  */
 public class SaqueContaPassos extends DadosPassos {
 
+    private ContaFacade contaFacade;
+
     @Before
     public void criarMockSaqueContaPassos(){
+        contaFacade = new ContaFacadeImpl();
         setLimiteInicial(500.00);
         setDepositoValido(true);
     }
@@ -32,19 +36,21 @@ public class SaqueContaPassos extends DadosPassos {
 
     @Dado("^que seja solicitado um saque de \"([^\"]*)\"$")
     public void queSejaSolicitadoUmSaqueDe(String saque) throws Throwable {
-        setSaqueSolicitado(Double.valueOf(saque));
+        getConta().setSaque(Double.valueOf(saque));
         validarSaque();
     }
 
     @Quando("^for executada a operação de saque$")
     public void forExecutadaAOperaçãoDeSaque() throws Throwable {
         if(isSaqueValido()){
-            getConta().sacar(getSaqueSolicitado());
+//            getConta().sacar(getSaqueSolicitado());
+            setResponse(contaFacade.sacar(getConta()));
         }
     }
 
     @Então("^deverá ser exibida a seguinte mensagem \"([^\"]*)\"$")
     public void deveráSerExibidaASeguinteMensagem(String message) throws Throwable {
+        System.out.println(getResponse().toString());
         Assertions.assertTrue(isSaqueValido(), message);
     }
 
@@ -55,8 +61,8 @@ public class SaqueContaPassos extends DadosPassos {
 
     @After
     public void limparMockSaqueContaPassos(){
-        setSaqueSolicitado(null);
         setLimiteInicial(null);
         setSaqueValido(null);
+        setResponse(null);
     }
 }

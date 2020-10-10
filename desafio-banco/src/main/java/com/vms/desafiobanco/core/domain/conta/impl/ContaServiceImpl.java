@@ -11,39 +11,43 @@ import org.springframework.stereotype.Service;
 @Service
 public class ContaServiceImpl implements ContaService {
 
-    private Double limiteInicial = 500.00;
-    private Double depositoSolicitado;
-
     @Override
     public Conta criar(Conta conta) {
-        /*if(verificarConta(conta)){
+        if(verificarConta(conta)){
             return conta;
-        }*/
+        }
         return conta;
     }
 
     @Override
-    public Boolean depositar(double quantidade, Long id) {
-        /*if (verificarDeposito(quantidade)){
-            saldo += quantidade;
+    public boolean sacar(Conta conta) {
+        Double saldoConta = conta.getSaldo();
+        Double quantidade = conta.getSaque();
+
+        if (verificarSaque(quantidade, saldoConta)) {
+            saldoConta = saldoConta - quantidade;
             return true;
         } else {
             return false;
-        }*/
-        return true;
+        }
     }
 
     @Override
-    public Boolean sacar(double quantidade, Long id) {
-        return true;
+    public boolean depositar(Conta conta) {
+        Double saldoConta = conta.getSaldo();
+        Double limiteConta = conta.getLimite();
+        Double quantidade = conta.getDeposito();
+
+        if (verificarDeposito(quantidade, saldoConta, limiteConta)){
+            saldoConta += quantidade;
+            return true;
+        } else {
+            return false;
+        }
     }
 
-/*    public boolean verificarConta(Conta conta){
-
-    }
-
-    public boolean verificarSaque(Double valor) {
-        if (saldo <= valor) {
+    public boolean verificarSaque(Double quantidade, Double saldo) {
+        if (saldo <= quantidade) {
             // Não pode sacar
             return false;
         } else {
@@ -52,16 +56,7 @@ public class ContaServiceImpl implements ContaService {
         }
     }
 
-    public boolean sacar(Double valor) {
-        if (verificarSaque(valor)) {
-//            saldo = saldo - valor;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean verificarDeposito(Double quantidade){
+    public boolean verificarDeposito(Double quantidade, Double saldo, Double limite){
         if (limite <= quantidade + saldo) {
             // Não pode depositar
             return false;
@@ -71,12 +66,18 @@ public class ContaServiceImpl implements ContaService {
         }
     }
 
-    public boolean depositar(Double quantidade) {
-        if (verificarDeposito(quantidade)){
-            saldo += quantidade;
-            return true;
-        } else {
+    public boolean verificarConta(Conta conta){
+        if(conta.getSaldo() < conta.getLimite()){
             return false;
         }
-    }*/
+        if(conta.getCpf().equals("")){
+            return false;
+        }
+        if(conta.getCpf().equals("111111111111")){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 }

@@ -26,28 +26,28 @@ public class ContaFacadeImpl implements ContaFacade {
     @RequestMapping(method= RequestMethod.POST, path="salvar" )
     public ResponseEntity<?> salvar(@RequestBody Conta conta ){
 
-        return new ResponseEntity<>(HttpStatus.OK);
-//        Conta c = this.contaService.criar(conta);
-//        return new ResponseEntity<>(c, HttpStatus.OK);
+//        return new ResponseEntity<>(HttpStatus.OK);
+        Conta c = this.contaService.criar(conta);
+        return new ResponseEntity<>(c, HttpStatus.OK);
     }
 
     //depositar em uma conta
     @Override
-    @RequestMapping(method=RequestMethod.PUT, path="depositar/{quantidade}/{id}" )
-    public ResponseEntity<?> depositar(@PathVariable double quantidade, @PathVariable Long id){
+    @RequestMapping(method=RequestMethod.POST, path="depositar" )
+    public ResponseEntity<?> depositar(@RequestBody Conta conta){
 
-//        this.contaService.depositar(quantidade, id);
-        return new ResponseEntity<>( HttpStatus.OK);
+        this.contaService.depositar(conta);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     //sacar em uma conta
     @Override
-    @RequestMapping(method=RequestMethod.PUT, path="sacar/{quantidade}/{id}" )
-    public ResponseEntity<?> sacar(@PathVariable double quantidade, @PathVariable Long id){
-//        if (quantidade <= 0) {
-//            throw new ExceptionCustom("valor incorreto");
-//        }
-//        this.contaService.sacar(quantidade, id);
+    @RequestMapping(method=RequestMethod.POST, path="sacar" )
+    public ResponseEntity<?> sacar(@RequestBody Conta conta){
+        if (conta.getSaque() <= 0) {
+            throw new IllegalArgumentException("valor incorreto");
+        }
+        this.contaService.sacar(conta);
         return new ResponseEntity<>( HttpStatus.OK);
     }
 }

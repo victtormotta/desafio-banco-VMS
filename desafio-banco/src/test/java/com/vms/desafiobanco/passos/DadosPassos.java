@@ -1,7 +1,11 @@
 package com.vms.desafiobanco.passos;
 
+import com.vms.desafiobanco.core.application.conta.ContaFacade;
+import com.vms.desafiobanco.core.application.conta.impl.ContaFacadeImpl;
 import com.vms.desafiobanco.model.Conta;
 import com.vms.desafiobanco.model.Transferencia;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 
 import javax.xml.ws.Response;
 import java.util.ArrayList;
@@ -13,22 +17,21 @@ import java.util.Map;
  * @project desafio-banco
  */
 // stepData
-public class DadosPassos {
+public class DadosPassos  {
 
     /*protected Response response;
     protected ValidatableResponse json;
     protected RequestSpecification request;*/
 
+    private ResponseEntity<?> response;
     private Conta contaTeste;
     private Integer numeroContaInicial;
     private Double limiteInicial;
-    private Double depositoSolicitado;
-    private Double saqueSolicitado;
+    private Transferencia transferenciaSolicitada;
+    private List<Conta> listaContasTeste = new ArrayList<>();;
     private Boolean isContaValida;
     private Boolean isDepositoValido;
     private Boolean isSaqueValido;
-    private List<Conta> listaContasTeste = new ArrayList<>();;
-    private Transferencia transferenciaSolicitada;
     private Boolean isTransferenciaValida;
 
     //  CriarContaPassos
@@ -82,12 +85,12 @@ public class DadosPassos {
 
     // verificar se deposito é válido
     public void validarDeposito(){
-        setDepositoValido(contaTeste.verificarDeposito(getDepositoSolicitado()));
+        setDepositoValido(contaTeste.verificarDeposito(getConta().getDeposito()));
     }
 
     // verificar se saque é válido
     public void validarSaque(){
-        setSaqueValido(contaTeste.verificarSaque(getSaqueSolicitado()));
+        setSaqueValido(contaTeste.verificarSaque(getConta().getSaque()));
     }
 
     // verificar se transferencia é válido
@@ -103,6 +106,14 @@ public class DadosPassos {
             }
         }
         return null;
+    }
+
+    public ResponseEntity<?> getResponse() {
+        return response;
+    }
+
+    public void setResponse(ResponseEntity<?> response) {
+        this.response = response;
     }
 
     public Conta getConta() {
@@ -129,14 +140,6 @@ public class DadosPassos {
         this.numeroContaInicial = numeroConta;
     }
 
-    public Double getDepositoSolicitado() {
-        return depositoSolicitado;
-    }
-
-    public void setDepositoSolicitado(Double depositoSolicitado) {
-        this.depositoSolicitado = depositoSolicitado;
-    }
-
     public Boolean isContaValida() {
         return isContaValida;
     }
@@ -151,14 +154,6 @@ public class DadosPassos {
 
     public void setDepositoValido(Boolean depositoValido) {
         isDepositoValido = depositoValido;
-    }
-
-    public Double getSaqueSolicitado() {
-        return saqueSolicitado;
-    }
-
-    public void setSaqueSolicitado(Double saqueSolicitado) {
-        this.saqueSolicitado = saqueSolicitado;
     }
 
     public Boolean isSaqueValido() {
