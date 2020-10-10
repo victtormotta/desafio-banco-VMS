@@ -1,16 +1,20 @@
 package com.vms.desafiobanco.model;
 
+import java.io.Serializable;
+
 /**
  * @author mota- on 10/8/2020
  * @project desafio-banco
  */
-public class Conta {
+public class Conta implements Serializable {
 
     private String dono;
     private Integer numero;
     private String cpf;
     private Double saldo;
     private Double limite;
+
+    public Conta(){ }
 
     public Conta(String dono, int numero, String cpf, Double limite, Double saldo) {
         this.dono = dono;

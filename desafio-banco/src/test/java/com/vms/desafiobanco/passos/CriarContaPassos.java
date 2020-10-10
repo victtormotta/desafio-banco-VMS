@@ -1,5 +1,8 @@
 package com.vms.desafiobanco.passos;
 
+import com.vms.desafiobanco.core.application.conta.ContaFacade;
+import com.vms.desafiobanco.core.application.conta.impl.ContaFacadeImpl;
+import com.vms.desafiobanco.core.domain.conta.ContaService;
 import com.vms.desafiobanco.model.Conta;
 import cucumber.api.PendingException;
 import cucumber.api.java.pt.Dado;
@@ -8,6 +11,8 @@ import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
 import org.junit.jupiter.api.Assertions;
 import cucumber.api.DataTable;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Map;
@@ -16,7 +21,7 @@ import java.util.Map;
  * @author mota- on 10/8/2020
  * @project desafio-banco
  */
-public class CriarContaPassos {
+public class CriarContaPassos extends ContaFacadeImpl {
 
     private Conta conta;
     private Boolean isContaValida;
@@ -41,6 +46,8 @@ public class CriarContaPassos {
     @Quando("^for enviada a solicitação de criação de nova conta$")
     public void forEnviadaASolicitaçãoDeCriaçãoDeNovaConta() throws Throwable {
         isContaValida = validarNovaConta(conta);
+        // chamar api
+        salvar(conta);
     }
 
     @Então("^deverá ser apresentada a seguinte mensagem de erro \"([^\"]*)\"$")
@@ -72,5 +79,4 @@ public class CriarContaPassos {
             return true;
         }
     }
-
 }

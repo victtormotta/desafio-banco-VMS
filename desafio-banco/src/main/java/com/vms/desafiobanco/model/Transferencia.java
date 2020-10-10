@@ -10,6 +10,8 @@ public class Transferencia {
     private Conta contaBeneficiario;
     private Double valor;
 
+    public Transferencia(){}
+
     public Transferencia(Conta contaSolicitante, Conta contaBeneficiario, Double valor) {
         this.contaSolicitante = contaSolicitante;
         this.contaBeneficiario = contaBeneficiario;
