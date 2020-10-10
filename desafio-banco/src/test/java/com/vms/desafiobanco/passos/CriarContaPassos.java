@@ -5,6 +5,8 @@ import com.vms.desafiobanco.core.application.conta.impl.ContaFacadeImpl;
 import com.vms.desafiobanco.core.domain.conta.ContaService;
 import com.vms.desafiobanco.model.Conta;
 import cucumber.api.PendingException;
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.E;
 import cucumber.api.java.pt.Então;
@@ -21,62 +23,46 @@ import java.util.Map;
  * @author mota- on 10/8/2020
  * @project desafio-banco
  */
-public class CriarContaPassos extends ContaFacadeImpl {
+public class CriarContaPassos extends DadosPassos {
 
-    private Conta conta;
-    private Boolean isContaValida;
-    private Double limiteInicial = 50.0;
-    private Integer numeroConta = 12345;
+    @Before
+    public void criarMockCriarContaPassos(){
+        setLimiteInicial(50.0);
+        setNumeroConta(12345);
+        setContaValida(true);
+    }
 
     @Dado("^que seja solicitada a criação de uma nova conta com os seguintes valores$")
     public void queSejaSolicitadaACriaçãoDeUmaNovaContaComOsSeguintesValores(List<Map<String, String>> valores) throws Throwable {
-
-        /** https://stackoverflow.com/questions/53751940/how-to-convert-the-cucumber-data-table-in-the-examples-section-to-mapkey-value
-            You can access the table directly as a List of Maps. Each item in the list represents one row of the data table which is provided as a map
-            where the keys are the column headings and the values are the values from the data table.
-         */
-        for (Map<String, String> dataRow : valores) {
-            String dono = dataRow.get("Nome");
-            String cpf = dataRow.get("Cpf");
-            Double saldo = Double.valueOf(dataRow.get("Saldo"));
-            conta = new Conta(dono, numeroConta, cpf, limiteInicial ,saldo);
-        }
+        criarConta(valores);
     }
 
     @Quando("^for enviada a solicitação de criação de nova conta$")
     public void forEnviadaASolicitaçãoDeCriaçãoDeNovaConta() throws Throwable {
-        isContaValida = validarNovaConta(conta);
+        validarNovaConta();
         // chamar api
-        salvar(conta);
+//        salvar(conta);
     }
 
     @Então("^deverá ser apresentada a seguinte mensagem de erro \"([^\"]*)\"$")
     public void deveráSerApresentadaASeguinteMensagemDeErro(String mensagem) throws Throwable {
-        Assertions.assertFalse(isContaValida, mensagem);
+        Assertions.assertTrue(isContaValida(), mensagem);
     }
 
     @Então("^deverá ser retornado o número da conta criada$")
     public void deveráSerRetornadoONúmeroDaContaCriada() throws Throwable {
-        Assertions.assertTrue(isContaValida, "Número da conta: " + conta.getNumero());
+        Assertions.assertTrue(isContaValida(), "Número da conta: " + getConta().getNumero());
     }
 
     @E("^deverá ser apresentada a seguinte mensagem \"([^\"]*)\"$")
     public void deveráSerApresentadaASeguinteMensagem(String mensagem) throws Throwable {
-        Assertions.assertTrue(isContaValida, mensagem);
+        Assertions.assertTrue(isContaValida(), mensagem);
     }
 
-    public boolean validarNovaConta(Conta conta){
-        if(conta.getSaldo() < limiteInicial){
-            return false;
-        }
-        if(conta.getCpf().equals("")){
-            return false;
-        }
-        if(conta.getCpf().equals("111111111111")){
-            return false;
-        }
-        else{
-            return true;
-        }
+    @After
+    public void limparMockCriarContaPassos(){
+        setLimiteInicial(null);
+        setNumeroConta(null);
+        setContaValida(null);
     }
 }

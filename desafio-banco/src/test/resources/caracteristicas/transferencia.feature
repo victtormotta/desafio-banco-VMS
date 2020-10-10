@@ -1,5 +1,5 @@
 # language: pt
-
+@TransferenciaBancoTeste
 Funcionalidade: Transferência de valores entre contas
 
   Cenário de Fundo: Criação das contas

@@ -50,12 +50,17 @@ public class Conta implements Serializable {
         this.limite = limite;
     }
 
-    public boolean verificarSaque(Double valor) {
-        if (saldo <= valor) {
-            // Não pode sacar
+    public boolean verificarConta(){
+        if(saldo < limite){
             return false;
-        } else {
-            // Pode sacar
+        }
+        if(cpf.equals("")){
+            return false;
+        }
+        if(cpf.equals("111111111111")){
+            return false;
+        }
+        else{
             return true;
         }
     }
@@ -69,6 +74,25 @@ public class Conta implements Serializable {
         }
     }
 
+    public boolean depositar(Double quantidade) {
+        if (verificarDeposito(quantidade)){
+            saldo += quantidade;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean verificarSaque(Double valor) {
+        if (saldo <= valor) {
+            // Não pode sacar
+            return false;
+        } else {
+            // Pode sacar
+            return true;
+        }
+    }
+
     public boolean verificarDeposito(Double quantidade){
         if (limite <= quantidade + saldo) {
             // Não pode depositar
@@ -76,15 +100,6 @@ public class Conta implements Serializable {
         } else {
             // Pode depositar
             return true;
-        }
-    }
-
-    public boolean depositar(Double quantidade) {
-        if (verificarDeposito(quantidade)){
-            saldo += quantidade;
-            return true;
-        } else {
-            return false;
         }
     }
 
