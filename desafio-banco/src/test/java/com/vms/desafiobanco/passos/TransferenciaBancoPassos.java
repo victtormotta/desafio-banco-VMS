@@ -25,7 +25,7 @@ public class TransferenciaBancoPassos extends DadosPassos {
     @Before
     public void criarMockTransferenciaBancoPassos(){
         transferenciaFacade = new TransferenciaFacadeImpl();
-        setLimiteInicial(500.00);
+        setLimiteInicial(2000.00);
 //        setTransferenciaValida(true);
     }
 
@@ -41,14 +41,17 @@ public class TransferenciaBancoPassos extends DadosPassos {
 
     @Quando("^for executada a operação de transferência$")
     public void forExecutadaAOperaçãoDeTransferência() throws Throwable {
-        validarTransferencia();
         setResponse(transferenciaFacade.transferir(getTransferenciaSolicitada()));
     }
 
     @Então("^deverá ser apresentada a mensagem \"([^\"]*)\"$")
     public void deveráSerApresentadaAMensagem(String message) throws Throwable {
         System.out.println(getResponse().toString());
-        Assertions.assertTrue(isTransferenciaValida(), message);
+        if(isTransferenciaValida()){
+            Assertions.assertTrue(isTransferenciaValida(), message);
+        } else{
+            Assertions.assertFalse(isTransferenciaValida(), message);
+        }
     }
 
     @E("^o saldo da conta \"([^\"]*)\" deve ser de \"([^\"]*)\"$")

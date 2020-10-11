@@ -13,7 +13,7 @@ public class ContaServiceImpl implements ContaService {
 
     @Override
     public Conta criar(Conta conta) {
-        if(verificarConta(conta)){
+        if(verificar(conta)){
             return conta;
         }
         return conta;
@@ -46,6 +46,8 @@ public class ContaServiceImpl implements ContaService {
         }
     }
 
+    // verificar se saque é válido
+    @Override
     public boolean verificarSaque(Double quantidade, Double saldo) {
         if (saldo <= quantidade) {
             // Não pode sacar
@@ -56,6 +58,8 @@ public class ContaServiceImpl implements ContaService {
         }
     }
 
+    // verificar se deposito é válido
+    @Override
     public boolean verificarDeposito(Double quantidade, Double saldo, Double limite){
         if (limite <= quantidade + saldo) {
             // Não pode depositar
@@ -66,7 +70,9 @@ public class ContaServiceImpl implements ContaService {
         }
     }
 
-    public boolean verificarConta(Conta conta){
+    // verificar se conta é válida
+    @Override
+    public boolean verificar(Conta conta){
         if(conta.getSaldo() < conta.getLimite()){
             return false;
         }

@@ -18,13 +18,6 @@ public class Transferencia {
         this.valor = valor;
     }
 
-    public boolean realizarTransferencia(){
-        if(contaSolicitante.sacar(valor)){
-            contaBeneficiario.depositar(valor);
-        }
-        return true;
-    }
-
     public Conta getContaSolicitante() {
         return contaSolicitante;
     }

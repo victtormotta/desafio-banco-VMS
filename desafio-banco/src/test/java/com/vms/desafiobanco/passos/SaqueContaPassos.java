@@ -37,7 +37,8 @@ public class SaqueContaPassos extends DadosPassos {
     @Dado("^que seja solicitado um saque de \"([^\"]*)\"$")
     public void queSejaSolicitadoUmSaqueDe(String saque) throws Throwable {
         getConta().setSaque(Double.valueOf(saque));
-        validarSaque();
+
+        verificarSaqueValidoTeste(contaFacade.verificarSaque(getConta()).getStatusCodeValue());
     }
 
     @Quando("^for executada a operação de saque$")

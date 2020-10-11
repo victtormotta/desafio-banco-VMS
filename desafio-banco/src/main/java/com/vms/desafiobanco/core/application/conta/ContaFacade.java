@@ -13,7 +13,14 @@ public interface ContaFacade {
 
     ResponseEntity<?> salvar(@RequestBody Conta conta);
 
+    ResponseEntity<?> verificar(@RequestBody Conta conta);
+
     ResponseEntity<?> depositar(@RequestBody Conta conta);
 
+    ResponseEntity<?> verificarDeposito(@RequestBody Conta conta);
+
     ResponseEntity<?> sacar(@RequestBody Conta conta);
+
+    ResponseEntity<?> verificarSaque(@RequestBody Conta conta);
+
 }

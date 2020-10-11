@@ -78,26 +78,6 @@ public class DadosPassos  {
         return transferenciaSolicitada;
     }
 
-    // verificar se conta é válido
-    public void validarNovaConta(){
-        setContaValida(contaTeste.verificarConta());
-    }
-
-    // verificar se deposito é válido
-    public void validarDeposito(){
-        setDepositoValido(contaTeste.verificarDeposito(getConta().getDeposito()));
-    }
-
-    // verificar se saque é válido
-    public void validarSaque(){
-        setSaqueValido(contaTeste.verificarSaque(getConta().getSaque()));
-    }
-
-    // verificar se transferencia é válido
-    public void validarTransferencia(){
-        setTransferenciaValida(transferenciaSolicitada.realizarTransferencia());
-    }
-
     // retornar objeto conta passando numero como parametro
     public Conta retornarContaPorNumero(Integer numeroConta, List<Conta> listaContasTeste) throws Throwable {
         for (Conta conta : listaContasTeste) {
@@ -107,6 +87,36 @@ public class DadosPassos  {
         }
         return null;
     }
+
+    // verifica statusCodeValue
+    public void verificarContaValidaTeste(int statusCodeValue){
+        if(statusCodeValue == 400){
+            setContaValida(false);
+        }
+        if(statusCodeValue == 200){
+            setContaValida(true);
+        }
+    }
+
+    public void verificarDepositoValidoTeste(int statusCodeValue){
+        if(statusCodeValue == 400){
+            setDepositoValido(false);
+        }
+        if(statusCodeValue == 200){
+            setDepositoValido(true);
+        }
+    }
+
+    public void verificarSaqueValidoTeste(int statusCodeValue){
+        if(statusCodeValue == 400){
+            setSaqueValido(false);
+        }
+        if(statusCodeValue == 200){
+            setSaqueValido(true);
+        }
+    }
+
+
 
     public ResponseEntity<?> getResponse() {
         return response;
@@ -181,10 +191,18 @@ public class DadosPassos  {
     }
 
     public Boolean isTransferenciaValida() {
-        return isTransferenciaValida;
+        return retornarRequisicaoHttp(getResponse().getStatusCodeValue());
+//        return isTransferenciaValida;
     }
 
     public void setTransferenciaValida(Boolean transferenciaValida) {
         isTransferenciaValida = transferenciaValida;
+    }
+
+    public boolean retornarRequisicaoHttp(int statusCodeValue){
+        if(statusCodeValue == 400){
+            return false;
+        }
+        return statusCodeValue == 200;
     }
 }

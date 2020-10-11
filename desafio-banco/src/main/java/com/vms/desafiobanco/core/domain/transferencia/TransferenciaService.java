@@ -8,6 +8,6 @@ import com.vms.desafiobanco.model.Transferencia;
  */
 public interface TransferenciaService {
 
-    public Transferencia salvar(Transferencia trans);
+    public boolean transferir(Transferencia transferencia);
 
 }

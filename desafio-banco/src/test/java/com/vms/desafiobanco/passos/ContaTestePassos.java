@@ -17,23 +17,23 @@ public class ContaTestePassos {
 //        conta = new Conta(dono, numero, limite, saldo);
     }
 
-    @Quando("^o dono realiza o deposito no valor de (\\d+) na conta$")
-    public void oDonoRealizaODepositoNoValorDeDepositoNaConta(Double valorDeposito) throws Throwable {
-        Assertions.assertTrue(conta.depositar(valorDeposito),
-                "O dono " + conta.getDono() + " não tem limite disponível na conta para este valor de deposito");
-    }
-
-    @E("^o dono realiza o primeiro saque no valor de (\\d+) na conta$")
-    public void oDonoRealizaOPrimeiroSaqueNoValorDePrimeiro_saqueNaConta(Double valorSaque) throws Throwable {
-        Assertions.assertTrue(conta.sacar(valorSaque),
-                "O dono " + conta.getDono() + " não tem saldo disponível na conta para este valor de saque");
-    }
-
-    @E("^o dono realiza o segundo saque no valor de (\\d+) na conta$")
-    public void oDonoRealizaOSegundoSaqueNoValorDeSegundo_saqueNaConta(Double valorSaque) throws Throwable {
-        Assertions.assertTrue(conta.sacar(valorSaque),
-                "O dono " + conta.getDono() + " não tem saldo disponível na conta para este valor de saque");
-    }
+//    @Quando("^o dono realiza o deposito no valor de (\\d+) na conta$")
+//    public void oDonoRealizaODepositoNoValorDeDepositoNaConta(Double valorDeposito) throws Throwable {
+//        Assertions.assertTrue(conta.depositar(valorDeposito),
+//                "O dono " + conta.getDono() + " não tem limite disponível na conta para este valor de deposito");
+//    }
+//
+//    @E("^o dono realiza o primeiro saque no valor de (\\d+) na conta$")
+//    public void oDonoRealizaOPrimeiroSaqueNoValorDePrimeiro_saqueNaConta(Double valorSaque) throws Throwable {
+//        Assertions.assertTrue(conta.sacar(valorSaque),
+//                "O dono " + conta.getDono() + " não tem saldo disponível na conta para este valor de saque");
+//    }
+//
+//    @E("^o dono realiza o segundo saque no valor de (\\d+) na conta$")
+//    public void oDonoRealizaOSegundoSaqueNoValorDeSegundo_saqueNaConta(Double valorSaque) throws Throwable {
+//        Assertions.assertTrue(conta.sacar(valorSaque),
+//                "O dono " + conta.getDono() + " não tem saldo disponível na conta para este valor de saque");
+//    }
 
     @Entao("^o dono tem o saldo no valor de (\\d+) na conta$")
     public void oDonoTemOSaldoNoValorDeSaldo_esperadoNaConta(Double saldoEsperado) throws Throwable {

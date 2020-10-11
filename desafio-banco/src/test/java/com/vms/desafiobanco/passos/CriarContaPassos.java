@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Assertions;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * @author mota- on 10/8/2020
@@ -26,7 +27,6 @@ public class CriarContaPassos extends DadosPassos {
         contaFacade = new ContaFacadeImpl();
         setLimiteInicial(50.0);
         setNumeroConta(12345);
-        setContaValida(true);
     }
 
     @Dado("^que seja solicitada a criação de uma nova conta com os seguintes valores$")
@@ -36,7 +36,10 @@ public class CriarContaPassos extends DadosPassos {
 
     @Quando("^for enviada a solicitação de criação de nova conta$")
     public void forEnviadaASolicitaçãoDeCriaçãoDeNovaConta() throws Throwable {
-        validarNovaConta();
+        // chama api de verificação da conta e atribui a boolean se a conta
+        // é válida ou não (pelo retorno da requisição)
+        verificarContaValidaTeste(contaFacade.verificar(getConta()).getStatusCodeValue());
+
         // chamar api e atribuir a variavel
         setResponse(contaFacade.salvar(getConta()));
     }

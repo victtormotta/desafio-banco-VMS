@@ -24,8 +24,7 @@ public class DepositoContaPassos extends DadosPassos {
     @Before
     public void criarMockDepositoContaPassos(){
         contaFacade = new ContaFacadeImpl();
-        setLimiteInicial(500.00);
-        setDepositoValido(true);
+        setLimiteInicial(2000.00);
     }
 
     @Dado("^que existam as seguintes contas$")
@@ -36,7 +35,8 @@ public class DepositoContaPassos extends DadosPassos {
     @E("^que seja solicitado um depósito de \"([^\"]*)\"$")
     public void queSejaSolicitadoUmDepósitoDe(String deposito) throws Throwable {
         getConta().setDeposito(Double.valueOf(deposito));
-        validarDeposito();
+
+        verificarDepositoValidoTeste(contaFacade.verificarDeposito(getConta()).getStatusCodeValue());
     }
 
     @Quando("^for executada a operação de depósito$")
@@ -52,7 +52,7 @@ public class DepositoContaPassos extends DadosPassos {
     @Entao("^deverá ser mostrada a seguinte mensagem \"([^\"]*)\"$")
     public void deveráSerMostradaASeguinteMensagem(String mensagem) throws Throwable {
         System.out.println(getResponse().toString());
-        Assertions.assertFalse(isDepositoValido(), mensagem);
+        Assertions.assertTrue(isDepositoValido(), mensagem);
     }
 
     @E("^o saldo da conta \"([^\"]*)\" deverá ser de \"([^\"]*)\"$")
