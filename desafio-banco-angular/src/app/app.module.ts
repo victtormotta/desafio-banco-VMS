@@ -7,6 +7,8 @@ import { CriarComponent } from './criar/criar.component';
 import { DepositarComponent } from './depositar/depositar.component';
 import { SacarComponent } from './sacar/sacar.component';
 import { TransferirComponent } from './transferir/transferir.component';
+import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,10 +18,12 @@ import { TransferirComponent } from './transferir/transferir.component';
     SacarComponent,
     TransferirComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
