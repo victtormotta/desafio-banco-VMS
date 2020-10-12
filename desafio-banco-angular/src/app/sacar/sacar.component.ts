@@ -8,7 +8,6 @@ import {HttpClient} from '@angular/common/http';
 })
 export class SacarComponent implements OnInit {
 
-  response;
   errorMessage;
   saqueInvalido = false;
   numero: number = 12345;

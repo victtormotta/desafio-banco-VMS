@@ -1,15 +1,45 @@
-<H1>Criar Conta</H1>
-
 <div class="container">
-  <div class="alert alert-warning" *ngIf='contaInvalida'>{{errorMessage}}</div>
 
-  <div>
-    Nome completo : <input type="text" name="dono" [(ngModel)]="dono">
-    CPF  : <input type="text" name="cpf" [(ngModel)]="cpf">
-    Número da conta  : <input type="number" name="numero" [(ngModel)]="numero">
-    Saldo  : <input type="number" name="saldo" [(ngModel)]="saldo">
+    <div class="alert alert-warning" *ngIf='contaInvalida'>{{errorMessage}}</div>
 
-    <button (click)=handleCriarConta() class="btn btn-success">Criar Conta</button>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form>
+          <div class="modal-header">
+            <h4 class="modal-title">Criar Conta</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
 
+              <label>Nome completo</label>
+              <input class="form-control" required="true" type="text" name="dono" [(ngModel)]="dono">
+
+            </div>
+            <div class="form-group">
+
+              <label>CPF</label>
+              <input class="form-control" required="true" type="text" name="cpf" [(ngModel)]="cpf">
+
+            </div>
+            <div class="form-group">
+
+              <label>Número da conta</label>
+              <input class="form-control" required="true" type="number" name="numero" [(ngModel)]="numero">
+
+            </div>
+            <div class="form-group">
+
+              <label>Saldo</label>
+              <input class="form-control" required="true" type="number" name="saldo" [(ngModel)]="saldo">
+
+            </div>
+          </div>
+          <div class="modal-footer">
+            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+            <button (click)=handleCriarConta() class="btn btn-success">Criar Conta</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
-</div>

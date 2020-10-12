@@ -1,18 +1,40 @@
-<H1>Sacar em Conta</H1>
-
 <div class="container">
+
   <div class="alert alert-warning" *ngIf='saqueInvalido'>{{errorMessage}}</div>
-  <br><br>
 
-  <div>
-    Número da conta  : <input type="number" name="numero" [(ngModel)]="numero">
-    Saldo  : <input type="number" name="saldo" [(ngModel)]="saldo">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form>
+        <div class="modal-header">
+          <h4 class="modal-title">Sacar de Conta</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        </div>
+        <div class="modal-body">
 
+          <div class="form-group">
 
-    Quantidade Saque  : <input type="number" name="saque" [(ngModel)]="saque">
+            <label>Número da conta</label>
+            <input class="form-control" required="true" type="number" name="numero" [(ngModel)]="numero">
 
-    <button (click)=handleSacar() class="btn btn-success">Sacar</button>
+          </div>
+          <div class="form-group">
 
+            <label>Saldo</label>
+            <input class="form-control" required="true" type="number" name="saldo" [(ngModel)]="saldo">
+
+          </div>
+          <div class="form-group">
+
+            <label>Quantidade Saque</label>
+            <input class="form-control" required="true" type="number" name="saque" [(ngModel)]="saque">
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+          <button (click)=handleSacar() class="btn btn-success">Sacar</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
-

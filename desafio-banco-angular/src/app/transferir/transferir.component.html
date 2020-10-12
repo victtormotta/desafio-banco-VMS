@@ -1,1 +1,86 @@
-<p>transferir works!</p>
+<div class="container">
+
+  <div class="alert alert-warning" *ngIf='transferenciaInvalida'>{{errorMessage}}</div>
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form>
+        <div class="modal-header">
+          <h4 class="modal-title">Depositar em Conta</h4>
+        </div>
+
+        <div class="modal-body">
+
+          <div class="form-group">
+
+            <label>Nome completo Solicitante</label>
+            <input class="form-control" required="true" type="text" name="dono" [(ngModel)]="donoSolicitante">
+
+          </div>
+          <div class="form-group">
+
+            <label>Número da conta Solicitante</label>
+            <input class="form-control" required="true" type="number" name="numero" [(ngModel)]="numeroSolicitante">
+
+          </div>
+          <div class="form-group">
+
+            <label>CPF Solicitante</label>
+            <input class="form-control" required="true" type="text" name="cpf" [(ngModel)]="cpfSolicitante">
+
+          </div>
+          <div class="form-group">
+
+            <label>Saldo Solicitante</label>
+            <input class="form-control" required="true" type="number" name="saldo" [(ngModel)]="saldoSolicitante">
+
+          </div>
+
+          <br>
+          <hr/>
+          <br>
+
+        <div class="form-group">
+
+            <label>Nome completo Beneficiario</label>
+            <input class="form-control" required="true" type="text" name="dono" [(ngModel)]="donoBeneficiario">
+
+          </div>
+          <div class="form-group">
+
+            <label>Número da conta Beneficiario</label>
+            <input class="form-control" required="true" type="number" name="numero" [(ngModel)]="numeroBeneficiario">
+
+          </div>
+          <div class="form-group">
+
+            <label>CPF Beneficiario</label>
+            <input class="form-control" required="true" type="text" name="cpf" [(ngModel)]="cpfBeneficiario">
+
+          </div>
+          <div class="form-group">
+
+            <label>Saldo Beneficiario</label>
+            <input class="form-control" required="true" type="number" name="saldo" [(ngModel)]="saldoBeneficiario">
+
+          </div>
+
+          <div class="form-group">
+            <br>
+            <hr/>
+            <br>
+            <label><b>Valor a ser transferido</b></label>
+            <input class="form-control" required="true" type="number" name="valor" [(ngModel)]="valor">
+
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+          <button (click)=handleTransferir() class="btn btn-success">Transferir</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
