@@ -42,59 +42,6 @@ public class Conta implements Serializable {
         this.limite = limite;
     }
 
-//    public boolean verificarConta(){
-//        if(saldo < limite){
-//            return false;
-//        }
-//        if(cpf.equals("")){
-//            return false;
-//        }
-//        if(cpf.equals("111111111111")){
-//            return false;
-//        }
-//        else{
-//            return true;
-//        }
-//    }
-//
-//    public boolean sacar(Double valor) {
-//        if (verificarSaque(valor)) {
-//            saldo = saldo - valor;
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
-//
-//    public boolean depositar(Double quantidade) {
-//        if (verificarDeposito(quantidade)){
-//            saldo += quantidade;
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
-//
-//    public boolean verificarSaque(Double valor) {
-//        if (saldo <= valor) {
-//            // Não pode sacar
-//            return false;
-//        } else {
-//            // Pode sacar
-//            return true;
-//        }
-//    }
-//
-//    public boolean verificarDeposito(Double quantidade){
-//        if (limite <= quantidade + saldo) {
-//            // Não pode depositar
-//            return false;
-//        } else {
-//            // Pode depositar
-//            return true;
-//        }
-//    }
-
     public String getDono() {
         return dono;
     }
