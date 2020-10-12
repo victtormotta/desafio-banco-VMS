@@ -12,11 +12,8 @@ import org.springframework.stereotype.Service;
 public class ContaServiceImpl implements ContaService {
 
     @Override
-    public Conta criar(Conta conta) {
-        if(verificar(conta)){
-            return conta;
-        }
-        return conta;
+    public boolean criar(Conta conta) {
+        return verificar(conta);
     }
 
     @Override

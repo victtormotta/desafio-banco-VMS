@@ -9,7 +9,7 @@ import com.vms.desafiobanco.model.Conta;
 
 public interface ContaService {
 
-    Conta criar(Conta conta);
+    boolean criar(Conta conta);
 
     boolean verificar(Conta conta);
 

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
  * @project desafio-banco
  */
 @Controller
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("conta")
 public class ContaFacadeImpl implements ContaFacade {
@@ -27,8 +28,9 @@ public class ContaFacadeImpl implements ContaFacade {
     public ResponseEntity<?> salvar(@RequestBody Conta conta ){
 
 //        return new ResponseEntity<>(HttpStatus.OK);
-        Conta c = this.contaService.criar(conta);
-        return new ResponseEntity<>(c, HttpStatus.OK);
+//        Conta c = this.contaService.criar(conta);
+//        return new ResponseEntity<>(c, HttpStatus.OK);
+        return retornarHttpStatus(this.contaService.criar(conta));
     }
 
     //verificar se conta é válida
@@ -44,8 +46,9 @@ public class ContaFacadeImpl implements ContaFacade {
     @RequestMapping(method=RequestMethod.POST, path="depositar" )
     public ResponseEntity<?> depositar(@RequestBody Conta conta){
 
-        this.contaService.depositar(conta);
-        return new ResponseEntity<>(HttpStatus.OK);
+//        this.contaService.depositar(conta);
+//        return new ResponseEntity<>(HttpStatus.OK);
+        return retornarHttpStatus(this.contaService.depositar(conta));
     }
 
     //verificar se deposito é válida
@@ -63,8 +66,9 @@ public class ContaFacadeImpl implements ContaFacade {
         if (conta.getSaque() <= 0) {
             throw new IllegalArgumentException("valor incorreto");
         }
-        this.contaService.sacar(conta);
-        return new ResponseEntity<>( HttpStatus.OK);
+//        this.contaService.sacar(conta);
+//        return new ResponseEntity<>( HttpStatus.OK);
+        return retornarHttpStatus(this.contaService.sacar(conta));
     }
 
     //verificar se saque é válido
