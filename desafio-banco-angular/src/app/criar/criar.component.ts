@@ -8,13 +8,14 @@ import {HttpClient} from '@angular/common/http';
 })
 export class CriarComponent implements OnInit {
 
-  errorMessage = 'Dados inválidos!';
+  response;
+  errorMessage;
   contaInvalida = false;
-  dono;
-  cpf;
-  numero;
-  saldo;
-  limite = 2000;
+  dono: string = '';
+  cpf: string = '';
+  numero: number = 12345;
+  saldo: number = 0;
+  limite: number = 2000;
 
   constructor(private http: HttpClient) { }
 
@@ -23,12 +24,15 @@ export class CriarComponent implements OnInit {
 
   handleCriarConta(): void {
     this.http.post<Conta>('http://localhost:8080/conta/salvar', {dono: this.dono, cpf: this.cpf,
-      numero: this.numero, saldo: this.saldo, limite: this.limite}).subscribe(data => {
-      this.dono = data.dono;
-      this.cpf = data.cpf;
-      this.numero = data.numero;
-      this.saldo = data.saldo;
-      this.limite = data.limite;
+      numero: this.numero, saldo: this.saldo, limite: this.limite}).subscribe({
+      next: data => {
+        this.contaInvalida = false;
+      },
+      error: error => {
+        this.contaInvalida = true;
+        this.errorMessage = error.status;
+        console.error('There was an error!', error);
+      }
     });
   }
 }

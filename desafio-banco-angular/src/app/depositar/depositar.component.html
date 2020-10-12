@@ -1,1 +1,18 @@
-<p>depositar works!</p>
+<H1>Depositar em Conta</H1>
+
+<div class="container">
+  <div class="alert alert-warning" *ngIf='depositoInvalido'>{{errorMessage}}</div>
+  <br><br>
+
+  <div>
+    Número da conta  : <input type="number" name="numero" [(ngModel)]="numero">
+    Saldo  : <input type="number" name="saldo" [(ngModel)]="saldo">
+
+
+    Quantidade Depósito  : <input type="number" name="deposito" [(ngModel)]="deposito">
+
+    <button (click)=handleDepositar() class="btn btn-success">Depositar</button>
+
+  </div>
+</div>
+

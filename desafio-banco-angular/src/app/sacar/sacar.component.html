@@ -1,1 +1,18 @@
-<p>sacar works!</p>
+<H1>Sacar em Conta</H1>
+
+<div class="container">
+  <div class="alert alert-warning" *ngIf='saqueInvalido'>{{errorMessage}}</div>
+  <br><br>
+
+  <div>
+    Número da conta  : <input type="number" name="numero" [(ngModel)]="numero">
+    Saldo  : <input type="number" name="saldo" [(ngModel)]="saldo">
+
+
+    Quantidade Saque  : <input type="number" name="saque" [(ngModel)]="saque">
+
+    <button (click)=handleSacar() class="btn btn-success">Sacar</button>
+
+  </div>
+</div>
+
