@@ -43,10 +43,13 @@ public class SaqueContaPassos extends DadosPassos {
 
     @Quando("^for executada a operação de saque$")
     public void forExecutadaAOperaçãoDeSaque() throws Throwable {
-        if(isSaqueValido()){
-//            getConta().sacar(getSaqueSolicitado());
-            setResponse(contaFacade.sacar(getConta()));
-        }
+        setResponse(contaFacade.sacar(getConta()));
+    }
+
+    @Então("^deverá ser exibida a seguinte mensagem com erro \"([^\"]*)\"$")
+    public void deveráSerExibidaASeguinteMensagemComErro(String message) throws Throwable {
+        System.out.println(getResponse().toString());
+        Assertions.assertFalse(isSaqueValido(), message);
     }
 
     @Então("^deverá ser exibida a seguinte mensagem \"([^\"]*)\"$")

@@ -10,7 +10,7 @@ Funcionalidade: Realização de operação de saque
   Cenário: 01 - Realização de saque acima do valor máximo por operação
     Dado que seja solicitado um saque de "501.0"
     Quando for executada a operação de saque
-    Então deverá ser exibida a seguinte mensagem "Operação de transferência tem um limite máximo de 500 por operação."
+    Então deverá ser exibida a seguinte mensagem com erro "Operação de transferência tem um limite máximo de 500 por operação."
     E o saldo da conta "123456" será de "1000.0"
 
   Cenário: 02 - Realização de saque com sucesso
