@@ -11,6 +11,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class ContaServiceImpl implements ContaService {
 
+    static Double SALDO_INICIAL_OBRIGATORIO = 50.00;
+    static Double LIMITE_CONTA = 2000.00;
+    static Double LIMITE_SAQUE_POR_OPERACAO = 500.00;
+
     @Override
     public boolean criar(Conta conta) {
         return verificar(conta);
@@ -32,7 +36,7 @@ public class ContaServiceImpl implements ContaService {
     @Override
     public boolean depositar(Conta conta) {
         Double saldoConta = conta.getSaldo();
-        Double limiteConta = conta.getLimite();
+        Double limiteConta = LIMITE_CONTA;
         Double quantidade = conta.getDeposito();
 
         if (verificarDeposito(quantidade, saldoConta, limiteConta)){
@@ -46,6 +50,10 @@ public class ContaServiceImpl implements ContaService {
     // verificar se saque é válido
     @Override
     public boolean verificarSaque(Double quantidade, Double saldo) {
+        if(quantidade > LIMITE_SAQUE_POR_OPERACAO){
+            // Não pode sacar
+            return false;
+        }
         if (saldo <= quantidade) {
             // Não pode sacar
             return false;
@@ -70,7 +78,7 @@ public class ContaServiceImpl implements ContaService {
     // verificar se conta é válida
     @Override
     public boolean verificar(Conta conta){
-        if(conta.getSaldo() < conta.getLimite()){
+        if(conta.getSaldo() < SALDO_INICIAL_OBRIGATORIO){
             return false;
         }
         if(conta.getCpf().equals("")){

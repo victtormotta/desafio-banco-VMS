@@ -19,6 +19,8 @@ public class TransferenciaServiceImpl implements TransferenciaService {
 
     private ContaService contaService = new ContaServiceImpl();
 
+    static Double LIMITE_TRANSFERENCIA_POR_OPERACAO = 500.00;
+
     @Override
     public boolean transferir(Transferencia transferencia) {
 
@@ -39,7 +41,7 @@ public class TransferenciaServiceImpl implements TransferenciaService {
         }
     }
 
-    public boolean verificarLimiteTransferencia(Double valor){
-        return valor <= 500;
+    private boolean verificarLimiteTransferencia(Double valor){
+        return valor <= LIMITE_TRANSFERENCIA_POR_OPERACAO;
     }
 }
