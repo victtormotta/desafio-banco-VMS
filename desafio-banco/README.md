@@ -19,9 +19,9 @@ com o status das requisições;
 
 Features Cucumber e suas classes desenvolvidas utilizando a metodologia BDD (Behavior Driven Development):
 
-* [Criar Conta](\src\test\resources\caracteristicas\criar_conta.feature) - Feature de criação de uma nova conta no banco - Cucumber Step: [Criar Conta Passos](src\test\java\com\vms\desafiobanco\passos\CriarContaPassos.java)
-* [Depósito](\src\test\resources\caracteristicas\deposito.feature) - Feature de realização da operação de depósito em conta.  - Cucumber Step: [Depósito Conta Passos](src\test\java\com\vms\desafiobanco\passos\DepositoContaPassos.java)
-* [Saque](\src\test\resources\caracteristicas\saque.feature) - Feature de realização da operação de saque em conta. [Saque Conta Passos](src\test\java\com\vms\desafiobanco\passos\SaqueContaPassos.java)
-* [Transferência](\src\test\resources\caracteristicas\transferencia.feature) - Feature de realização da operação transferência de valores entre contas.[Transferencia Conta Passos](src\test\java\com\vms\desafiobanco\passos\TransferenciaContaPassos.java)
-* [Dados](\src\test\java\com\vms\desafiobanco\passos\DadosPassos.java) - Classe StepData com métodos que irão ser extendidos para outras classes.
+* [Criar Conta](/src/test/resources/caracteristicas/criar_conta.feature) - Feature de criação de uma nova conta no banco - Cucumber Step: [Criar Conta Passos](src/test/java/com/vms/desafiobanco/passos/CriarContaPassos.java)
+* [Depósito](/src/test/resources/caracteristicas/deposito.feature) - Feature de realização da operação de depósito em conta.  - Cucumber Step: [Depósito Conta Passos](src/test/java/com/vms/desafiobanco/passos/DepositoContaPassos.java)
+* [Saque](/src/test/resources/caracteristicas/saque.feature) - Feature de realização da operação de saque em conta. [Saque Conta Passos](src/test/java/com/vms/desafiobanco/passos/SaqueContaPassos.java)
+* [Transferência](/src/test/resources/caracteristicas/transferencia.feature) - Feature de realização da operação transferência de valores entre contas.[Transferencia Conta Passos](src/test/java/com/vms/desafiobanco/passos/TransferenciaContaPassos.java)
+* [Dados](/src/test/java/com/vms/desafiobanco/passos/DadosPassos.java) - Classe StepData com métodos que irão ser extendidos para outras classes.
 
