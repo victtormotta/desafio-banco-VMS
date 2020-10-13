@@ -8,6 +8,10 @@ Utiliza a idea de Domain Driven Design para separar a lógica de negócio da inf
 testes Cucumber e integração posterior com Angular o escopo se resumiu a essas interações, sem a integração por ex com banco de dados (h2 ou jpa) ou
 métodos de autenticação como JAAS;
 
+<b>CORE:</b>
+
+Pacote dividido em 3 layers:
+
 `application` é o layer aonde fica o controller das requisições http feitas pela api e que a partir dela são retornadas o response
 com o status das requisições:
 
@@ -20,6 +24,20 @@ com o status das requisições:
 * [TransferenciaServiceImpl](src/main/java/com/vms/desafiobanco/core/domain/transferencia/impl/TransferenciaServiceImpl.java)
 
 `repository` é o layer para persitência de dados; neste projeto não foi utilizado banco de dados;
+
+<b>MODEL:</b>
+
+Pacote responsável por guardar as classes que representam objetos e entidades da aplicação:
+
+* [Conta](src/main/java/com/vms/desafiobanco/model/Conta.java)
+* [Transferencia](src/main/java/com/vms/desafiobanco/model/Transferencia.java)
+
+<b>VIEW:</b>
+
+Pacote resposável pela camada visual aonde o usuário irá interagir; Foi utilizado o Angular para frontend:
+
+* [desafio-banco-angular](https://github.com/victtormotta/desafio-banco-VMS/tree/master/desafio-banco-angular)
+
 
 ## Requisitos  Funcionais
 
