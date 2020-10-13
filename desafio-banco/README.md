@@ -9,9 +9,15 @@ testes Cucumber e integração posterior com Angular o escopo se resumiu a essas
 métodos de autenticação como JAAS;
 
 `application` é o layer aonde fica o controller das requisições http feitas pela api e que a partir dela são retornadas o response
-com o status das requisições;
+com o status das requisições:
 
-`domain` é o layer para lidar com regras de negócio;
+* [ContaFacadeImpl](src/main/java/com/vms/desafiobanco/core/application/conta/impl/ContaFacadeImpl.java)
+* [TransferenciaFacadeImpl](src/main/java/com/vms/desafiobanco/core/application/transferencia/impl/TransferenciaFacadeImpl.java)
+
+`domain` é o layer para lidar com regras de negócio:
+
+* [ContaServiceImpl](src/main/java/com/vms/desafiobanco/core/domain/conta/impl/ContaServiceImpl.java)
+* [TransferenciaServiceImpl](src/main/java/com/vms/desafiobanco/core/domain/transferencia/impl/TransferenciaServiceImpl.java)
 
 `repository` é o layer para persitência de dados; neste projeto não foi utilizado banco de dados;
 
