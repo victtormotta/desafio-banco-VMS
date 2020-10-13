@@ -1,6 +1,7 @@
 <div class="container">
 
-    <div class="alert alert-warning" *ngIf='contaInvalida'>{{errorMessage}}</div>
+  <div class="alert alert-warning" *ngIf='contaInvalida'>{{message}}</div>
+  <div class="alert alert-success" *ngIf='contaCriada'>{{message}}</div>
 
     <div class="modal-dialog">
       <div class="modal-content">

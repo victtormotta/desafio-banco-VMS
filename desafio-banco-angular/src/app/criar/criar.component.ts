@@ -8,14 +8,14 @@ import {HttpClient} from '@angular/common/http';
 })
 export class CriarComponent implements OnInit {
 
-  response;
-  errorMessage;
+  message;
+  contaCriada = false;
   contaInvalida = false;
-  dono: string = '';
-  cpf: string = '';
-  numero: number = 12345;
-  saldo: number = 0;
-  limite: number = 2000;
+  dono: string;
+  cpf: string;
+  numero: number;
+  saldo: number;
+  limite: number;
 
   constructor(private http: HttpClient) { }
 
@@ -27,10 +27,13 @@ export class CriarComponent implements OnInit {
       numero: this.numero, saldo: this.saldo, limite: this.limite}).subscribe({
       next: data => {
         this.contaInvalida = false;
+        this.contaCriada = true;
+        this.message = 'Conta com número ' + this.numero + ' de dono ' + this.dono + ', com cpf de ' + this.cpf + ' criada.';
       },
       error: error => {
         this.contaInvalida = true;
-        this.errorMessage = error.status;
+        this.contaCriada = false;
+        this.message = 'Dados inválidos!';
         console.error('There was an error!', error);
       }
     });

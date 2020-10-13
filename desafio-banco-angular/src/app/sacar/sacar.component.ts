@@ -8,12 +8,13 @@ import {HttpClient} from '@angular/common/http';
 })
 export class SacarComponent implements OnInit {
 
-  errorMessage;
+  message;
   saqueInvalido = false;
-  numero: number = 12345;
-  saldo: number = 1000;
-  saque: number = 0;
-  limite: number = 500;
+  saqueRealizado = false;
+  numero: number;
+  saldo: number;
+  saque: number;
+  limite: number;
 
   constructor(private http: HttpClient) { }
 
@@ -24,11 +25,14 @@ export class SacarComponent implements OnInit {
     this.http.post<Conta>('http://localhost:8080/conta/sacar', {numero: this.numero, saldo: this.saldo, limite: this.limite,
       saque: this.saque}).subscribe({
       next: data => {
+        this.saqueRealizado = true;
         this.saqueInvalido = false;
+        this.message = 'Saque de ' + this.saque + ' reais realizado. Saldo final de R$' + (this.saldo - this.saque);
       },
       error: error => {
         this.saqueInvalido = true;
-        this.errorMessage = error.status;
+        this.saqueRealizado = false;
+        this.message = 'Dados inválidos!';
         console.error('There was an error!', error);
       }
     });

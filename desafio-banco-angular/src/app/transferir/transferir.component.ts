@@ -9,20 +9,21 @@ import {JsonObject} from '@angular/compiler-cli/ngcc/src/packages/entry_point';
 })
 export class TransferirComponent implements OnInit {
 
-  errorMessage;
+  message;
   transferenciaInvalida = false;
+  transferenciaRealizada = false;
   // conta Solicitante;
   donoSolicitante: string;
   cpfSolicitante: string;
-  numeroSolicitante: number = 12345;
-  saldoSolicitante: number = 1000;
-  limiteSolicitante: number = 2000;
+  numeroSolicitante: number;
+  saldoSolicitante: number;
+  limiteSolicitante: number;
   // conta Beneficiario
   donoBeneficiario: string;
   cpfBeneficiario: string;
-  numeroBeneficiario: number = 12345;
-  saldoBeneficiario: number = 2500;
-  limiteBeneficiario: number = 2000;
+  numeroBeneficiario: number;
+  saldoBeneficiario: number;
+  limiteBeneficiario: number;
   valor: number;
 
   constructor(private http: HttpClient) { }
@@ -50,10 +51,14 @@ export class TransferirComponent implements OnInit {
     }).subscribe({
       next: data => {
         this.transferenciaInvalida = false;
+        this.transferenciaRealizada = true;
+        this.message = 'Conta de número ' + this.numeroSolicitante  + ' realizou transferência de R$' + this.valor +
+        ' reais para conta de número ' + this.numeroBeneficiario;
       },
       error: error => {
         this.transferenciaInvalida = true;
-        this.errorMessage = error.status;
+        this.transferenciaRealizada = false;
+        this.message = 'Dados inválidos!';
         console.error('There was an error!', error);
       }
     });

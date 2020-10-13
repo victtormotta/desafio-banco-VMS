@@ -8,13 +8,13 @@ import {HttpClient} from '@angular/common/http';
 })
 export class DepositarComponent implements OnInit {
 
-  response;
-  errorMessage;
+  message;
+  depositoRealizado = false;
   depositoInvalido = false;
-  numero: number = 12345;
-  saldo: number = 0;
-  deposito: number = 0;
-  limite: number = 2000;
+  numero: number;
+  saldo: number;
+  deposito: number;
+  limite: number;
 
   constructor(private http: HttpClient) { }
 
@@ -26,10 +26,13 @@ export class DepositarComponent implements OnInit {
     subscribe({
       next: data => {
         this.depositoInvalido = false;
+        this.depositoRealizado = true;
+        this.message = 'Depósito de ' + this.deposito + ' reais realizado com sucesso! Saldo final de R$' + (this.saldo + this.deposito) + ' reais.';
       },
       error: error => {
         this.depositoInvalido = true;
-        this.errorMessage = error.status;
+        this.depositoRealizado = false;
+        this.message = 'Dados inválidos!';
         console.error('There was an error!', error);
       }
     });

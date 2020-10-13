@@ -1,6 +1,7 @@
 <div class="container">
 
-  <div class="alert alert-warning" *ngIf='depositoInvalido'>{{errorMessage}}</div>
+  <div class="alert alert-warning" *ngIf='depositoInvalido'>{{message}}</div>
+  <div class="alert alert-success" *ngIf='depositoRealizado'>{{message}}</div>
 
   <div class="modal-dialog">
     <div class="modal-content">

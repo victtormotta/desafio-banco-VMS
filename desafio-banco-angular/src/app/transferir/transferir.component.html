@@ -1,6 +1,7 @@
 <div class="container">
 
-  <div class="alert alert-warning" *ngIf='transferenciaInvalida'>{{errorMessage}}</div>
+  <div class="alert alert-warning" *ngIf='transferenciaInvalida'>{{message}}</div>
+  <div class="alert alert-success" *ngIf='transferenciaRealizada'>{{message}}</div>
 
   <div class="modal-dialog">
     <div class="modal-content">
